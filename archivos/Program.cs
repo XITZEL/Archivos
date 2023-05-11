@@ -43,6 +43,7 @@ internal class Program
        List<Product>products= new List<Product>();
        //1er Producto
        products.Add(new Product("111", "Lapiz", 20));
+       products.Add(new Product("112", "Sacapuntas", 78));
        //Guardamos nuestra lista en un archivo
        ProductsDB.SaveProducts(products); 
 
