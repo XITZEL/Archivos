@@ -29,9 +29,24 @@ class ProductsDB
                     textOut.WriteLine(product.Price);
                 }
                 textOut.Close();
-
-
     }
+
+public static  List<Product> GetProducts()
+{
+    StreamReader textln=
+    new StreamReader(
+        new FileStream("productos.txt",FileMode.Open,FileAccess.Read));
+        List<Product>Products= new List<Product>();
+        while (textln.Peek()!=-1)
+        {
+            string row = textln.ReadLine();
+            string[] columns = ReaderWriterLock.Split("|");
+            Product Product = new Product (columns[0],columns[1],Convert.ToDecimal(columns[2]));
+            ProductsDB.Add(Product);            
+        }
+        textln.Close();
+        return Product();
+}
 
 
 }
@@ -46,6 +61,18 @@ internal class Program
        products.Add(new Product("112", "Sacapuntas", 78));
        //Guardamos nuestra lista en un archivo
        ProductsDB.SaveProducts(products); 
+
+
+
+       
+       //Leemos nuestros productos
+       List<Product> pds = new();
+       pds=ProductsDB.GetProducts();
+       foreach(Product p in pds)
+       {
+        Console.WriteLine(p.Price);
+       }
+       
 
 
        
